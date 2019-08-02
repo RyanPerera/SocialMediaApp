@@ -1,2 +1,2 @@
 # SocialMediaApp
-Social media app made using Android Studio and Java.
+Photo sharing social media app made using Android Studio.
