@@ -1,5 +1,6 @@
 package com.example.socialmediaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,8 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
 
     private String allKickBoxers;
 
+    private Button btnNextActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)    {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,8 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
 
         txtGetData = findViewById(R.id.txtGetData);
         btnGetAllData = findViewById(R.id.btnGetAllData);
+
+        btnNextActivity = findViewById(R.id.btnNextActivity);
 
         txtGetData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +92,14 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
                         }
                     }
                 });
+            }
+        });
+
+        btnNextActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUp.this,SignUpLoginActivity.class);
+                startActivity(intent);
             }
         });
 
