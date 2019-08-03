@@ -8,16 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.ParseUser;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.home_activity);
 
         TextView txtWelcome = findViewById(R.id.txtWelcome);
 
-        txtWelcome.setText("Welcome! "+ ParseUser.getCurrentUser().get("username"));
+        txtWelcome.setText("Welcome to the Home screen  "+ ParseUser.getCurrentUser().get("username") +"!");
 
         findViewById(R.id.btnLogout).setOnClickListener(new View.OnClickListener() {
             @Override

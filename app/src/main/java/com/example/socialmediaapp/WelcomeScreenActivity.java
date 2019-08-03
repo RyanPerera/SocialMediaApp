@@ -20,7 +20,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.List;
 
-public class SignUp extends AppCompatActivity  implements View.OnClickListener{
+public class WelcomeScreenActivity extends AppCompatActivity  implements View.OnClickListener{
 
     private Button btnSave;
     private EditText editName, editPunchSpeed, editPunchPower, editKickSpeed, editKickPower;
@@ -34,14 +34,14 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState)    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.welcome_screen_activity);
 
         // Save the current Installation to Back4App
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
         btnSave = findViewById(R.id.btnSave);
 
-        btnSave.setOnClickListener(SignUp.this);
+        btnSave.setOnClickListener(WelcomeScreenActivity.this);
 
         editName = findViewById(R.id.editName);
         editPunchSpeed = findViewById(R.id.editPunchSpeed);
@@ -84,10 +84,10 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
                                 for (ParseObject kickBoxer : objects){
                                     allKickBoxers = allKickBoxers + kickBoxer.get("name") + "\n";
                                 }
-                                FancyToast.makeText(SignUp.this,allKickBoxers, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                                FancyToast.makeText(WelcomeScreenActivity.this,allKickBoxers, FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
                             }
                         } else{
-                            FancyToast.makeText(SignUp.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                            FancyToast.makeText(WelcomeScreenActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                         }
                     }
@@ -98,7 +98,7 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
         btnNextActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignUp.this,SignUpLoginActivity.class);
+                Intent intent = new Intent(WelcomeScreenActivity.this, SignupActivity.class);
                 startActivity(intent);
             }
         });
@@ -122,15 +122,15 @@ public class SignUp extends AppCompatActivity  implements View.OnClickListener{
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
-                        FancyToast.makeText(SignUp.this, kickBoxer.get("name") + " sent to server", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                        FancyToast.makeText(WelcomeScreenActivity.this, kickBoxer.get("name") + " sent to server", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
                     } else {
-                        FancyToast.makeText(SignUp.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                        FancyToast.makeText(WelcomeScreenActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                     }
                 }
             });
         }
         catch (Exception e){
-            FancyToast.makeText(SignUp.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+            FancyToast.makeText(WelcomeScreenActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
         }
     }
 }
