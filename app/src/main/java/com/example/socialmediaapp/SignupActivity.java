@@ -1,8 +1,11 @@
 package com.example.socialmediaapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -26,9 +29,30 @@ public class SignupActivity extends AppCompatActivity {
 
         edtUsernameSignup = findViewById(R.id.edtUserNameSignup);
         edtPasswordSignup = findViewById(R.id.edtPasswordSignup);
+
+        // Click Signup button if user taps enter on keyboard in password field
+        edtPasswordSignup.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyCode == keyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+                    btnSignup.performClick();
+                }
+                return false;
+            }
+        });
+
         btnSignup = findViewById(R.id.btnSignUp);
         btnSwitchToLogin = findViewById(R.id.btnSwitchToLogin);
 
+        // Logout current user
+        if (ParseUser.getCurrentUser() != null) {
+            ParseUser.getCurrentUser().logOut();
+        }
+
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Signing up " + edtUsernameSignup.getText().toString());
+
+        // Sign up user
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,23 +61,28 @@ public class SignupActivity extends AppCompatActivity {
                 appUser.setUsername(edtUsernameSignup.getText().toString());
                 appUser.setPassword(edtPasswordSignup.getText().toString());
 
+
                 appUser.signUpInBackground(new SignUpCallback() {
                     @Override
                     public void done(ParseException e) {
                         if (e==null){
                             FancyToast.makeText(SignupActivity.this, appUser.get("username")+ " successfully signed up", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
+                            // Move to Home screen
                             Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                             startActivity(intent);
+                            finish();
                         } else{
                             FancyToast.makeText(SignupActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                         }
                     }
                 });
+
             }
         });
 
+        // Switch to login page
         btnSwitchToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,4 +93,15 @@ public class SignupActivity extends AppCompatActivity {
         });
 
     }
+
+    // Exit keyboard if screen outside is clicked
+    public void rootLayoutTapped(View view){
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

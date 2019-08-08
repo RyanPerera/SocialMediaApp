@@ -2,7 +2,9 @@ package com.example.socialmediaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -26,9 +28,22 @@ public class LoginActivity extends AppCompatActivity {
 
         edtUsernameLogin = findViewById(R.id.edtUserNameLogin);
         edtPasswordLogin = findViewById(R.id.edtPasswordLogin);
+
+        // Click login button if user clicks enter on keyboard in password field
+        edtPasswordLogin.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if (keyCode == keyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+                    btnLogin.performClick();
+                }
+                return false;
+            }
+        });
+
         btnLogin = findViewById(R.id.btnLogin);
         btnSwitchToSignup = findViewById(R.id.btnSwitchToSignup);
 
+        // Login user
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,8 +54,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (user != null && e== null){
                             FancyToast.makeText(LoginActivity.this, user.get("username")+ " logged in successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
+                            // Switch to Home screen
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
+                            finish();
 
                         } else{
                             FancyToast.makeText(LoginActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
@@ -51,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Switch to signup screen
         btnSwitchToSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,5 +78,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    // Exit keyboard if outside screen is clicked
+    public void rootLayoutTapped(View view){
+        try {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="rootLayoutTapped"
     tools:context=".LoginActivity">
 
     <Button
@@ -61,4 +62,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
