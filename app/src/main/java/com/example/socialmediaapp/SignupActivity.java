@@ -46,7 +46,7 @@ public class SignupActivity extends AppCompatActivity {
 
         // Logout current user
         if (ParseUser.getCurrentUser() != null) {
-            ParseUser.getCurrentUser().logOut();
+            transitionToHomeScreen();;
         }
 
 
@@ -75,9 +75,8 @@ public class SignupActivity extends AppCompatActivity {
                             FancyToast.makeText(SignupActivity.this, appUser.get("username")+ " successfully signed up", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
                             // Move to Home screen
-                            Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
-                            startActivity(intent);
-                           // finish();
+                            transitionToHomeScreen();
+                            finish();
                         } else{
                             FancyToast.makeText(SignupActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
@@ -109,6 +108,11 @@ public class SignupActivity extends AppCompatActivity {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void transitionToHomeScreen(){
+        Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 
 }

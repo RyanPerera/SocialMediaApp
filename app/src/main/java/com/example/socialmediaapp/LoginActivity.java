@@ -66,8 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                             FancyToast.makeText(LoginActivity.this, user.get("username")+ " logged in successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
                             // Switch to Home screen
-                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(intent);
+                            transitionToHomeScreen();
                             finish();
 
                         } else{
@@ -100,5 +99,10 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void transitionToHomeScreen(){
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        startActivity(intent);
     }
 }

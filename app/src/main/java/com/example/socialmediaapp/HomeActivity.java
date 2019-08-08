@@ -1,30 +1,37 @@
 package com.example.socialmediaapp;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
-import com.parse.ParseUser;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private TabAdapter tabAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
 
-        TextView txtWelcome = findViewById(R.id.txtWelcome);
 
-        txtWelcome.setText("Welcome to the Home screen  "+ ParseUser.getCurrentUser().get("username") +"!");
+        toolbar = findViewById(R.id.myToolbar);
+        viewPager = findViewById(R.id.viewPager);
+        tabAdapter  = new TabAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(tabAdapter);
 
-        findViewById(R.id.btnLogout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser.logOut();
-                finish();
-            }
-        });
+        tabLayout = findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager,false);
+
+
+
+
     }
 }
