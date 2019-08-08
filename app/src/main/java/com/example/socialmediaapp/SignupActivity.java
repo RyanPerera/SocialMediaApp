@@ -49,8 +49,7 @@ public class SignupActivity extends AppCompatActivity {
             ParseUser.getCurrentUser().logOut();
         }
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Signing up " + edtUsernameSignup.getText().toString());
+
 
         // Sign up user
         btnSignup.setOnClickListener(new View.OnClickListener() {
@@ -61,21 +60,29 @@ public class SignupActivity extends AppCompatActivity {
                 appUser.setUsername(edtUsernameSignup.getText().toString());
                 appUser.setPassword(edtPasswordSignup.getText().toString());
 
+                // Loading dialog
+                final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this);
+                progressDialog.setMessage("Signing up " + edtUsernameSignup.getText().toString());
+                progressDialog.show();
 
                 appUser.signUpInBackground(new SignUpCallback() {
                     @Override
                     public void done(ParseException e) {
+
+
+
                         if (e==null){
                             FancyToast.makeText(SignupActivity.this, appUser.get("username")+ " successfully signed up", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
 
                             // Move to Home screen
                             Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
                             startActivity(intent);
-                            finish();
+                           // finish();
                         } else{
                             FancyToast.makeText(SignupActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                         }
+                        progressDialog.dismiss();
                     }
                 });
 

@@ -1,5 +1,6 @@
 package com.example.socialmediaapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -43,13 +44,23 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnSwitchToSignup = findViewById(R.id.btnSwitchToSignup);
 
+
+
+
         // Login user
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setMessage("Logging in");
+                progressDialog.show();
+
                 ParseUser.logInInBackground(edtUsernameLogin.getText().toString(), edtPasswordLogin.getText().toString(), new LogInCallback() {
                     @Override
                     public void done(ParseUser user, ParseException e) {
+
+
 
                         if (user != null && e== null){
                             FancyToast.makeText(LoginActivity.this, user.get("username")+ " logged in successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
@@ -63,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             FancyToast.makeText(LoginActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
 
                         }
+                        progressDialog.dismiss();
                     }
                 });
             }
