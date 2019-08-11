@@ -15,13 +15,15 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".WelcomeScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +32,8 @@
         </activity>
         <activity
             android:name=".SignupActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.parse.SERVER_URL"

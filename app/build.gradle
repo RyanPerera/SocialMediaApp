@@ -31,4 +31,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:1.20.0'
     implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 }

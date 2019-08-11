@@ -21,4 +21,6 @@
     <string name="title_activity_test">Test</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_tabbbtesttt">Tabbbtesttt</string>
+    <string name="title_activity_homepage">HomepageActivity</string>
 </resources>

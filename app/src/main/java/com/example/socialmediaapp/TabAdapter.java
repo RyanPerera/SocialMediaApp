@@ -12,21 +12,20 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch(position){
+        switch (position){
             case 0:
                 return new ProfileTab();
             case 1:
                 return new UsersTab();
             case 2:
                 return new ShareMediaTab();
-            default:
-                return null;
+                default:
+                    return null;
         }
     }
 
     @Override
     public int getCount() {
-        // Number of tabs in toolbar
         return 3;
     }
 
