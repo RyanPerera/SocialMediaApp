@@ -5,10 +5,33 @@
     android:layout_height="match_parent"
     tools:context=".ProfileTab">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:id="@+id/edtDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:ems="10"
+        android:gravity="center_vertical"
+        android:hint="Enter a display name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/edtBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:ems="10"
+        android:hint="Enter a bio"
+        android:inputType="textPersonName"
+        android:translationY="50dp" />
+
+    <Button
+        android:id="@+id/btnUpdateInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Update Info"
+        android:textAllCaps="false"
+        android:translationY="100dp" />
 
 </FrameLayout>
