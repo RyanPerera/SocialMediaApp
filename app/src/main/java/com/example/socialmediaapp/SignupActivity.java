@@ -64,6 +64,7 @@ public class SignupActivity extends AppCompatActivity {
                 final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this);
                 progressDialog.setMessage("Signing up " + edtUsernameSignup.getText().toString());
                 progressDialog.show();
+                progressDialog.setCanceledOnTouchOutside(false);
 
                 appUser.signUpInBackground(new SignUpCallback() {
                     @Override

@@ -96,6 +96,7 @@ public class ShareMediaTab extends Fragment implements View.OnClickListener{
                         final ProgressDialog dialog =  new ProgressDialog(getContext());
                         dialog.setMessage("Uploading! Please wait.");
                         dialog.show();
+                        dialog.setCanceledOnTouchOutside(false);
                         parseObject.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {

@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                 final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
                 progressDialog.setMessage("Logging in");
                 progressDialog.show();
+                progressDialog.setCanceledOnTouchOutside(false);
 
                 ParseUser.logInInBackground(edtUsernameLogin.getText().toString(), edtPasswordLogin.getText().toString(), new LogInCallback() {
                     @Override
